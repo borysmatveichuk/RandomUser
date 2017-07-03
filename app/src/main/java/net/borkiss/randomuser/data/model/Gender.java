@@ -1,5 +1,7 @@
 package net.borkiss.randomuser.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum Gender {
-    Male, Female
+    @SerializedName("male") Male, @SerializedName("female") Female
 }

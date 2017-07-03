@@ -7,26 +7,25 @@ import java.util.Date;
 public final class User {
 
     //private long id;
-    //private Gender gender;
+    @SerializedName("gender")
+    private Gender gender;
+    @SerializedName("location")
+    private Location location;
     @SerializedName("name")
     private Name name;
 
-    /*
-    private String street;
-    private String city;
-    private String state;
-    private String postcode;
-
     private String email;
 
+    @SerializedName("dob")
     private Date dateOfBirth;
     private Date registered;
     private String phone;
+    private String cell;
 
-    private String pictureLarge;
-    private String pictureThumbnail;
+    private Picture picture;
+
+    @SerializedName("nat")
     private String nationality;
-    */
 
     public String getTitle() {
         return name.title;
@@ -40,48 +39,54 @@ public final class User {
         return name.last;
     }
 
+    public String getStreet() {
+        return location.street;
+    }
+
+    public String getCity() {
+        return location.city;
+    }
+
+    public String getState() {
+        return location.state;
+    }
+
+    public String getPostcode() {
+        return location.postcode;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getLargePicture() {
+        return picture.large;
+    }
+
+    public String getMediumPicture() {
+        return picture.medium;
+    }
+
+    public String getThumbnailPicture() {
+        return picture.thumbnail;
+    }
+
     private static class Name {
         String title;
         String first;
         String last;
     }
 
-    /*
-    "gender": "male",
-            "name": {
-        "title": "mr",
-                "first": "charles",
-                "last": "white"
-    },
-            "location": {
-        "street": "1753 green lane west",
-                "city": "hastings",
-                "state": "southland",
-                "postcode": 89685
-    },
-            "email": "charles.white@example.com",
-            "login": {
-        "username": "beautifulduck638",
-                "password": "groups",
-                "salt": "SPDPSwsx",
-                "md5": "396b44be6e6fee6136f4e74810cbbede",
-                "sha1": "48647ad4dfb8baca1e6c1ec4c5e4798a27f4f14e",
-                "sha256": "b8d42c429a8cfaab29b8a865c0e49e38935b6c6bbc80630a8de6272456b46b93"
-    },
-            "dob": "1948-12-07 07:47:11",
-            "registered": "2011-07-22 02:43:16",
-            "phone": "(053)-471-0905",
-            "cell": "(218)-685-1476",
-            "id": {
-        "name": "",
-                "value": null
-    },
-            "picture": {
-        "large": "https://randomuser.me/api/portraits/men/79.jpg",
-                "medium": "https://randomuser.me/api/portraits/med/men/79.jpg",
-                "thumbnail": "https://randomuser.me/api/portraits/thumb/men/79.jpg"
-    },
-            "nat": "NZ"
+    private static class Location {
+        String street;
+        String city;
+        String state;
+        String postcode;
+    }
 
-            */
+    private static class Picture {
+        String large;
+        String medium;
+        String thumbnail;
+    }
 }
