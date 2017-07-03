@@ -1,14 +1,17 @@
 package net.borkiss.randomuser.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public final class User {
 
-    private Gender gender;
-    private String title;
-    private String firstName;
-    private String lastName;
+    //private long id;
+    //private Gender gender;
+    @SerializedName("name")
+    private Name name;
 
+    /*
     private String street;
     private String city;
     private String state;
@@ -23,6 +26,25 @@ public final class User {
     private String pictureLarge;
     private String pictureThumbnail;
     private String nationality;
+    */
+
+    public String getTitle() {
+        return name.title;
+    };
+
+    public String getFirstName() {
+        return name.first;
+    }
+
+    public String getLastName() {
+        return name.last;
+    }
+
+    private static class Name {
+        String title;
+        String first;
+        String last;
+    }
 
     /*
     "gender": "male",
