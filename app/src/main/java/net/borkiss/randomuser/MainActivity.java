@@ -28,7 +28,14 @@ public class MainActivity extends AppCompatActivity {
                 final StringBuilder s = new StringBuilder();
 
                 for (User user : users) {
-                    s.append(user.getFirstName()).append("\n");
+                    s.append(user.getFirstName())
+                            .append(" ")
+                            .append(user.getLastName())
+                            .append(" ")
+                            .append(user.getCity())
+                            .append(" ")
+                            .append(user.getDateOfBirth())
+                            .append("\n");
                 }
 
                 runOnUiThread(new Runnable() {
