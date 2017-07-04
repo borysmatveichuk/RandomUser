@@ -2,9 +2,10 @@ package net.borkiss.randomuser.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public final class User {
+public final class User implements Serializable {
 
     //private long id;
     @SerializedName("gender")
@@ -71,20 +72,36 @@ public final class User {
         return picture.thumbnail;
     }
 
-    private static class Name {
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getCell() {
+        return cell;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    private static class Name implements Serializable {
         String title;
         String first;
         String last;
     }
 
-    private static class Location {
+    private static class Location implements Serializable {
         String street;
         String city;
         String state;
         String postcode;
     }
 
-    private static class Picture {
+    private static class Picture implements Serializable {
         String large;
         String medium;
         String thumbnail;
