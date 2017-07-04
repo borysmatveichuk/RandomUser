@@ -1,5 +1,6 @@
 package net.borkiss.randomuser.data;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import net.borkiss.randomuser.data.local.LocalUserDataSource;
@@ -17,16 +18,15 @@ public class UserRepository implements UserDataSource {
 
     private boolean dataIsDirty = false;
 
-    private UserRepository() {
+    private UserRepository(Context context) {
         remoteUserDataSource = RemoteUserDataSource.getInstance();
-        localUserDataSource = LocalUserDataSource.getInstance();
+        localUserDataSource = LocalUserDataSource.getInstance(context);
     }
 
-    public static UserRepository getInstance() {
+    public static UserRepository getInstance(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = new UserRepository();
+            INSTANCE = new UserRepository(context.getApplicationContext());
         }
-
         return INSTANCE;
     }
 
@@ -48,17 +48,27 @@ public class UserRepository implements UserDataSource {
     }
 
     @Override
-    public void getUser(GetUserCallback callback) {
+    public void getUser(long userId, final GetUserCallback callback) {
+        localUserDataSource.getUser(userId, new GetUserCallback() {
+            @Override
+            public void onUserLoaded(User user) {
+                callback.onUserLoaded(user);
+            }
 
+            @Override
+            public void onDataNotAvailable() {
+                callback.onDataNotAvailable();
+            }
+        });
     }
 
     @Override
     public void saveUser(User user) {
-
+        localUserDataSource.saveUser(user);
     }
 
     @Override
     public void deleteAllUsers() {
-
+        localUserDataSource.deleteAllUsers();
     }
 }

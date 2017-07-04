@@ -59,7 +59,7 @@ public class RemoteUserDataSource implements UserDataSource {
     }
 
     @Override
-    public void getUser(GetUserCallback callback) {
+    public void getUser(long userId, GetUserCallback callback) {
 
     }
 

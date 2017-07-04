@@ -20,7 +20,7 @@ public interface UserDataSource {
 
     void getAllUsers(@NonNull LoadUsersCallback callback);
 
-    void getUser(GetUserCallback callback);
+    void getUser(long userId, GetUserCallback callback);
 
     void saveUser(User user);
 
