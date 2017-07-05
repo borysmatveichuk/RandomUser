@@ -14,4 +14,6 @@
     <string name="cellPhone">Cell phone</string>
     <string name="nationality">Nationality</string>
 
+    <string name="noDataInfo">Can\'t get data. Try later.</string>
+
 </resources>

@@ -1,6 +1,8 @@
 package net.borkiss.randomuser;
 
 import android.os.Build;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private UserRepository userRepository;
     private RecyclerView recyclerView;
     private UsersAdapter adapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,20 +46,31 @@ public class MainActivity extends AppCompatActivity {
                 DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                userRepository.refreshUsers();
+                loadUsers();
+            }
+        });
 
+        loadUsers();
+    }
+
+    private void loadUsers() {
         userRepository.getAllUsers(new UserDataSource.LoadUsersCallback() {
             @Override
             public void onUsersLoaded(List<User> users) {
                 adapter.update(users);
+                swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onDataNotAvailable() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                    }
-                });
+                swipeRefreshLayout.setRefreshing(false);
+                showNoDateMessage();
             }
         });
     }
@@ -65,5 +79,9 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
         }
+    }
+
+    private void showNoDateMessage() {
+        Snackbar.make(recyclerView, R.string.noDataInfo, Snackbar.LENGTH_SHORT).show();
     }
 }
