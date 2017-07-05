@@ -27,8 +27,8 @@ public final class User implements Serializable {
     @Transient
     private static final long serialVersionUID = 6637065493861445979L;
 
-    @Id
-    private long id;
+    @Id(autoincrement = true)
+    private Long id;
 
     @Property
     @Convert(converter = GenderConverter.class, columnType = String.class)
@@ -69,8 +69,8 @@ public final class User implements Serializable {
     @SerializedName("nat")
     private String nationality;
 
-    @Generated(hash = 1417002592)
-    public User(long id, Gender gender, Location location, Name name, String email,
+    @Generated(hash = 1396373542)
+    public User(Long id, Gender gender, Location location, Name name, String email,
             Date dateOfBirth, Date registered, String phone, String cell, Picture picture,
             String nationality) {
         this.id = id;
@@ -150,12 +150,8 @@ public final class User implements Serializable {
         return nationality;
     }
 
-    public long getId() {
+    public Long getId() {
         return this.id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public Location getLocation() {
@@ -216,6 +212,10 @@ public final class User implements Serializable {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     static class Name implements Serializable {
