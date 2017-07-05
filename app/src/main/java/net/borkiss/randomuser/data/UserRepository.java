@@ -34,9 +34,30 @@ public class UserRepository implements UserDataSource {
 
     @Override
     public void getAllUsers(@NonNull final LoadUsersCallback callback) {
+
+        if (dataIsDirty) {
+            getFromRemoteDataSource(callback);
+            return;
+        }
+
+        localUserDataSource.getAllUsers(new LoadUsersCallback() {
+            @Override
+            public void onUsersLoaded(List<User> users) {
+                callback.onUsersLoaded(users);
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+                getFromRemoteDataSource(callback);
+            }
+        });
+    }
+
+    private void getFromRemoteDataSource(final LoadUsersCallback callback) {
         remoteUserDataSource.getAllUsers(new LoadUsersCallback() {
             @Override
             public void onUsersLoaded(List<User> users) {
+                refreshLocalDataSource(users);
                 callback.onUsersLoaded(users);
             }
 
@@ -45,6 +66,16 @@ public class UserRepository implements UserDataSource {
                 callback.onDataNotAvailable();
             }
         });
+    }
+
+    private void refreshLocalDataSource(List<User> users) {
+        localUserDataSource.deleteAllUsers();
+        for (User user : users) {
+            //save ID in object here instead requesting User from DB
+            long id = localUserDataSource.saveUser(user);
+            user.setId(id);
+        }
+        dataIsDirty = false;
     }
 
     @Override
@@ -63,12 +94,18 @@ public class UserRepository implements UserDataSource {
     }
 
     @Override
-    public void saveUser(User user) {
-        localUserDataSource.saveUser(user);
+    public long saveUser(User user) {
+        return localUserDataSource.saveUser(user);
     }
 
     @Override
     public void deleteAllUsers() {
         localUserDataSource.deleteAllUsers();
+        localUserDataSource.refreshUsers();
+    }
+
+    @Override
+    public void refreshUsers() {
+        dataIsDirty = true;
     }
 }

@@ -12,7 +12,6 @@ import net.borkiss.randomuser.data.remote.RemoteUserDataSource;
 
 import org.greenrobot.greendao.database.Database;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LocalUserDataSource implements UserDataSource {
@@ -59,12 +58,19 @@ public class LocalUserDataSource implements UserDataSource {
     }
 
     @Override
-    public void saveUser(User user) {
-        userDao.insertOrReplace(user);
+    public long saveUser(User user) {
+        return userDao.insertOrReplace(user);
     }
 
     @Override
     public void deleteAllUsers() {
         userDao.deleteAll();
+    }
+
+    /**
+     * Not required in local data source. see {@link net.borkiss.randomuser.data.UserRepository}
+     */
+    @Override
+    public void refreshUsers() {
     }
 }

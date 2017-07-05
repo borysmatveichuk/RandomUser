@@ -22,8 +22,10 @@ public interface UserDataSource {
 
     void getUser(long userId, GetUserCallback callback);
 
-    void saveUser(User user);
+    long saveUser(User user);
 
     void deleteAllUsers();
+
+    void refreshUsers();
 
 }

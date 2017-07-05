@@ -10,8 +10,6 @@ import net.borkiss.randomuser.data.model.User;
 import net.borkiss.randomuser.service.ServiceGenerator;
 import net.borkiss.randomuser.service.UsersService;
 
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,18 +56,35 @@ public class RemoteUserDataSource implements UserDataSource {
         });
     }
 
+    /**
+     * Not required in remote data source. see {@link net.borkiss.randomuser.data.UserRepository}
+     */
     @Override
     public void getUser(long userId, GetUserCallback callback) {
 
     }
 
+    /**
+     * Not required in remote data source. see {@link net.borkiss.randomuser.data.UserRepository}
+     */
     @Override
-    public void saveUser(User user) {
+    public long saveUser(User user) {
+        return 0;
+    }
+
+    /**
+     * Not required in remote data source. see {@link net.borkiss.randomuser.data.UserRepository}
+     */
+    @Override
+    public void deleteAllUsers() {
 
     }
 
+    /**
+     * Not required in remote data source. see {@link net.borkiss.randomuser.data.UserRepository}
+     */
     @Override
-    public void deleteAllUsers() {
+    public void refreshUsers() {
 
     }
 }
