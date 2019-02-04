@@ -13,6 +13,7 @@
     <string name="phone">Phone</string>
     <string name="cellPhone">Cell phone</string>
     <string name="nationality">Nationality</string>
+    <string name="fullName">"%s %s"</string>
 
     <string name="noDataInfo">Can\'t get data. Try later.</string>
 
