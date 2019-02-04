@@ -1,7 +1,7 @@
 package net.borkiss.randomuser.data;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import net.borkiss.randomuser.data.model.User;
 import net.borkiss.randomuser.data.remote.RemoteUserDataSource;
