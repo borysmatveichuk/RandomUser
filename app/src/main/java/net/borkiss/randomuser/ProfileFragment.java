@@ -41,41 +41,41 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        TextView gender = (TextView) view.findViewById(R.id.tvTitle);
+        TextView gender = view.findViewById(R.id.tvTitle);
         gender.setText(user.getTitle());
 
-        TextView name = (TextView) view.findViewById(R.id.tvName);
+        TextView name = view.findViewById(R.id.tvName);
         final String userName = user.getFirstName() +
                 (user.getLastName() != null && user.getLastName().length() > 0
                         ? " " + user.getLastName() : "");
         name.setText(userName);
 
-        TextView street = (TextView) view.findViewById(R.id.tvStreet);
+        TextView street = view.findViewById(R.id.tvStreet);
         street.setText(user.getStreet());
 
-        TextView city = (TextView) view.findViewById(R.id.tvCity);
+        TextView city = view.findViewById(R.id.tvCity);
         city.setText(user.getCity());
 
-        TextView state = (TextView) view.findViewById(R.id.tvState);
+        TextView state = view.findViewById(R.id.tvState);
         state.setText(user.getState());
 
-        TextView postcode = (TextView) view.findViewById(R.id.tvPostcode);
+        TextView postcode = view.findViewById(R.id.tvPostcode);
         postcode.setText(user.getPostcode());
 
-        TextView email = (TextView) view.findViewById(R.id.tvEmail);
+        TextView email = view.findViewById(R.id.tvEmail);
         email.setText(user.getEmail());
 
-        TextView dateOfBirth = (TextView) view.findViewById(R.id.tvDateOfBirth);
+        TextView dateOfBirth = view.findViewById(R.id.tvDateOfBirth);
         SimpleDateFormat dateFormat = new SimpleDateFormat("d MMMM yyyy", Locale.ENGLISH);
         dateOfBirth.setText(dateFormat.format(user.getDateOfBirth()));
 
-        TextView phone = (TextView) view.findViewById(R.id.tvPhone);
+        TextView phone = view.findViewById(R.id.tvPhone);
         phone.setText(user.getPhone());
 
-        TextView cellPhone = (TextView) view.findViewById(R.id.tvCellPhone);
+        TextView cellPhone = view.findViewById(R.id.tvCellPhone);
         cellPhone.setText(user.getCell());
 
-        TextView nationality = (TextView) view.findViewById(R.id.tvNationality);
+        TextView nationality = view.findViewById(R.id.tvNationality);
         nationality.setText(user.getNationality());
 
         return view;

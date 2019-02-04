@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Keep;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Transient;
 import org.greenrobot.greendao.converter.PropertyConverter;
@@ -19,76 +20,52 @@ import java.lang.reflect.Type;
 import java.util.Date;
 import org.greenrobot.greendao.annotation.Generated;
 
-@Entity
 public final class User implements Serializable {
 
-    @Transient
     private static final String TAG = User.class.getSimpleName();
-    @Transient
     private static final long serialVersionUID = 6637065493861445979L;
 
-    @Id(autoincrement = true)
-    private Long id;
-
-    @Property
-    @Convert(converter = GenderConverter.class, columnType = String.class)
     @SerializedName("gender")
     private Gender gender;
 
-    @Property
-    @Convert(converter = LocationConverter.class, columnType = String.class)
     @SerializedName("location")
     private Location location;
 
-    @Property
-    @Convert(converter = NameConverter.class, columnType = String.class)
     @SerializedName("name")
     private Name name;
 
-    @Property
     private String email;
 
-    @Property
     @SerializedName("dob")
-    private Date dateOfBirth;
+    private DateWrapper dateOfBirth;
 
-    @Property
-    private Date registered;
+    private DateWrapper registered;
 
-    @Property
     private String phone;
 
-    @Property
     private String cell;
 
-    @Property
-    @Convert(converter = PictureConverter.class, columnType = String.class)
     private Picture picture;
 
     @Property
     @SerializedName("nat")
     private String nationality;
 
-    @Generated(hash = 1396373542)
-    public User(Long id, Gender gender, Location location, Name name, String email,
+    public User(Gender gender, Location location, Name name, String email,
             Date dateOfBirth, Date registered, String phone, String cell, Picture picture,
             String nationality) {
-        this.id = id;
         this.gender = gender;
         this.location = location;
         this.name = name;
         this.email = email;
-        this.dateOfBirth = dateOfBirth;
-        this.registered = registered;
+        this.dateOfBirth.date = dateOfBirth;
+        this.registered.date = registered;
         this.phone = phone;
         this.cell = cell;
         this.picture = picture;
         this.nationality = nationality;
     }
 
-    @Generated(hash = 586692638)
-    public User() {
-    }
 
     public String getTitle() {
         return name.title;
@@ -119,7 +96,7 @@ public final class User implements Serializable {
     }
 
     public Date getDateOfBirth() {
-        return dateOfBirth;
+        return dateOfBirth.date;
     }
 
     public String getLargePicture() {
@@ -150,73 +127,6 @@ public final class User implements Serializable {
         return nationality;
     }
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public Location getLocation() {
-        return this.location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public Name getName() {
-        return this.name;
-    }
-
-    public void setName(Name name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Date getRegistered() {
-        return this.registered;
-    }
-
-    public void setRegistered(Date registered) {
-        this.registered = registered;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setCell(String cell) {
-        this.cell = cell;
-    }
-
-    public Picture getPicture() {
-        return this.picture;
-    }
-
-    public void setPicture(Picture picture) {
-        this.picture = picture;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
-    public Gender getGender() {
-        return this.gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     static class Name implements Serializable {
         private static final long serialVersionUID = -1782894845200254951L;

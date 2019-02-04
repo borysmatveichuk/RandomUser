@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import net.borkiss.randomuser.data.model.User;
@@ -48,18 +51,8 @@ public class ProfileActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .load(user.getLargePicture())
-                .asBitmap().centerCrop()
-                .placeholder(R.mipmap.ic_icon)
-                .into(new BitmapImageViewTarget(icon) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable circularBitmapDrawable =
-                                RoundedBitmapDrawableFactory.create(getResources(), resource);
-                        circularBitmapDrawable.setCircular(true);
-                        icon.setImageDrawable(circularBitmapDrawable);
-                    }
-                });
-
+                .apply(new RequestOptions().transforms(new CenterCrop(), new RoundedCorners(200)))
+                .into(icon);
         Fragment container = getSupportFragmentManager().findFragmentById(R.id.fragmentContainer);
         if (container == null) {
             getSupportFragmentManager().beginTransaction()

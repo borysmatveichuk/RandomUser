@@ -56,35 +56,4 @@ public class RemoteUserDataSource implements UserDataSource {
         });
     }
 
-    /**
-     * Not required in remote data source. see {@link net.borkiss.randomuser.data.UserRepository}
-     */
-    @Override
-    public void getUser(long userId, GetUserCallback callback) {
-
-    }
-
-    /**
-     * Not required in remote data source. see {@link net.borkiss.randomuser.data.UserRepository}
-     */
-    @Override
-    public long saveUser(User user) {
-        return 0;
-    }
-
-    /**
-     * Not required in remote data source. see {@link net.borkiss.randomuser.data.UserRepository}
-     */
-    @Override
-    public void deleteAllUsers() {
-
-    }
-
-    /**
-     * Not required in remote data source. see {@link net.borkiss.randomuser.data.UserRepository}
-     */
-    @Override
-    public void refreshUsers() {
-
-    }
 }
