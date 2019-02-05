@@ -15,6 +15,7 @@
     <string name="nationality">Nationality</string>
     <string name="fullName">"%s %s"</string>
 
-    <string name="noDataInfo">Can\'t get data. Try later.</string>
+    <string name="errorInformation">"Error: %s"</string>
+    <string name="noDataInfo">No data.</string>
 
 </resources>

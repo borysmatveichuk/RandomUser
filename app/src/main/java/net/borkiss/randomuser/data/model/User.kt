@@ -1,9 +1,11 @@
 package net.borkiss.randomuser.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-import java.io.Serializable
 
+@Parcelize
 data class User(
         val gender: Gender,
         val location: Location,
@@ -16,7 +18,7 @@ data class User(
         val cell: String,
         private val picture: Picture,
         @field:SerializedName("nat")
-        val nationality: String) : Serializable {
+        val nationality: String) : Parcelable {
 
 
     val title: String?
@@ -46,27 +48,23 @@ data class User(
     val mediumPicture: String?
         get() = picture.medium
 
-    class Name : Serializable {
+    @Parcelize
+    class Name(
+            val title: String,
+            val first: String,
+            val last: String) : Parcelable
 
-        var title: String? = null
-        var first: String? = null
-        var last: String? = null
-    }
+    @Parcelize
+    class Location(
+            val street: String,
+            val city: String,
+            val state: String,
+            val postcode: String) : Parcelable
 
-    class Location : Serializable {
+    @Parcelize
+    class Picture(
+        var large: String,
+        var medium: String,
+        var thumbnail: String) : Parcelable
 
-        var street: String? = null
-        var city: String? = null
-        var state: String? = null
-        var postcode: String? = null
-
-    }
-
-    class Picture : Serializable {
-
-        var large: String? = null
-        var medium: String? = null
-        var thumbnail: String? = null
-
-    }
 }

@@ -1,19 +1,18 @@
-package net.borkiss.randomuser
+package net.borkiss.randomuser.ui.profile
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.ImageView
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-
+import kotlinx.android.synthetic.main.activity_profile.*
+import net.borkiss.randomuser.R
 import net.borkiss.randomuser.data.model.User
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 
 fun goToProfile(context: Context, user: User) {
     context.startActivity(
@@ -35,29 +34,24 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private var user: User? = null
-    private var icon: ImageView? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-        user = intent.getSerializableExtra(EXTRA_USER) as User
+        val user = intent.getParcelableExtra(EXTRA_USER) as User
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-        setupToolbar()
-
-        icon = findViewById(R.id.icon)
+        setupToolbar(getString(R.string.fullName, user.firstName, user.lastName))
 
         Glide.with(this)
-                .load(user!!.largePicture)
+                .load(user.largePicture)
                 .apply(RequestOptions().transforms(CenterCrop(), RoundedCorners(200)))
-                .into(icon!!)
+                .into(icon)
         val container = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
         if (container == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainer, ProfileFragment.newInstance(user!!))
+                    .replace(R.id.fragmentContainer, ProfileFragment.newInstance(user))
                     .commit()
         }
 
@@ -75,12 +69,9 @@ class ProfileActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setupToolbar() {
-
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-            supportActionBar!!.title = user!!.firstName + " " + user!!.lastName
-        }
+    private fun setupToolbar(title: String) {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = title
     }
 
 }

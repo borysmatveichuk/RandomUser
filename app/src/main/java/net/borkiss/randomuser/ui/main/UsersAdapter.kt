@@ -1,4 +1,4 @@
-package net.borkiss.randomuser.adapter
+package net.borkiss.randomuser.ui.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,14 +17,14 @@ class UsersAdapter(
         private val onClick: (User) -> Unit
         ) : RecyclerView.Adapter<UsersAdapter.UserHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersAdapter.UserHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.user_item, parent, false)
 
         return UserHolder(view)
     }
 
-    override fun onBindViewHolder(holder: UsersAdapter.UserHolder, position: Int) {
+    override fun onBindViewHolder(holder: UserHolder, position: Int) {
         holder.bind(users[position])
     }
 

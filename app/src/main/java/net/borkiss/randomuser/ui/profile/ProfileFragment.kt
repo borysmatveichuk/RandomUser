@@ -1,4 +1,4 @@
-package net.borkiss.randomuser
+package net.borkiss.randomuser.ui.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_profile.*
+import net.borkiss.randomuser.R
 import net.borkiss.randomuser.data.model.User
 import net.borkiss.randomuser.ext.formatDate
 
@@ -21,7 +22,7 @@ class ProfileFragment : Fragment() {
             val args = Bundle()
 
             val fragment = ProfileFragment()
-            args.putSerializable(ARG_USER, user)
+            args.putParcelable(ARG_USER, user)
             fragment.arguments = args
 
             return fragment
@@ -32,7 +33,7 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        user = arguments!!.getSerializable(ARG_USER) as User
+        user = arguments!!.getParcelable(ARG_USER) as User
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -1,10 +1,12 @@
 package net.borkiss.randomuser.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-import java.io.Serializable
 
-enum class Gender : Serializable {
+@Parcelize
+enum class Gender : Parcelable {
     @SerializedName("male")
     Male,
     @SerializedName("female")

@@ -1,8 +1,10 @@
 package net.borkiss.randomuser.data.model
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.util.Date
 
+@Parcelize
 class DateWrapper(
         val date: Date,
-        val age: Int) : Serializable
+        val age: Int) : Parcelable
