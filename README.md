@@ -7,4 +7,4 @@ Simple Android application for showing data from https://randomuser.me/
 
 Takes 100 random users from net and show it in list. 
 
-Used 3rd part libraries: Retrofit2, RxJava, Glide.
+Used 3rd part libraries: Retrofit2, RxJava, Koin, Glide.
