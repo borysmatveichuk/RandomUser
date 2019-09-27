@@ -16,7 +16,6 @@ import net.borkiss.randomuser.ext.setVisibleGone
 import net.borkiss.randomuser.ext.visible
 import net.borkiss.randomuser.ui.profile.goToProfile
 import org.koin.android.viewmodel.ext.android.viewModel
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
