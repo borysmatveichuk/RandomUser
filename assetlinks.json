@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "net.borkiss.copy_track_investigation",
+    "sha256_cert_fingerprints":
+    ["84:46:49:09:BA:60:9F:5E:F6:02:51:B4:20:CC:81:31:18:7E:D1:96:A2:29:61:BC:FA:85:2F:AA:C6:D7:0A:66"]
+  }
+}]
